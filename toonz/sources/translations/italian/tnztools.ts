@@ -87,22 +87,6 @@
         <source>Table</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Flip Object Horizontally</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Flip Object Vertically</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rotate Object Left</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rotate Object Right</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>BrushTool</name>
@@ -497,10 +481,6 @@
     </message>
     <message>
         <source>Maximum Gap</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Pick+Freehand</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1384,22 +1364,6 @@ Procedere?</translation>
     <message>
         <source>Position</source>
         <translation type="unfinished">Posizione</translation>
-    </message>
-    <message>
-        <source>Flip Selection Horizontally</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Flip Selection Vertically</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rotate Selection Left</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Rotate Selection Right</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

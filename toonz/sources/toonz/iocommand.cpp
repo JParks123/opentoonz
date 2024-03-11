@@ -22,7 +22,6 @@
 #include "xdtsio.h"
 #include "expressionreferencemanager.h"
 #include "levelcommand.h"
-#include "columncommand.h"
 
 // TnzTools includes
 #include "tools/toolhandle.h"
@@ -926,8 +925,7 @@ TXshLevel *loadLevel(ToonzScene *scene,
       std::string format = actualPath.getType();
       if (format == "tzp" || format == "tzu") convertingPopup->show();
 
-      // SVGs are treated as PLI. Ignore the fIds lists
-      if (format != "svg" && fIds.size() != 0 && doesFileActuallyExist)
+      if (fIds.size() != 0 && doesFileActuallyExist)
         xl = scene->loadLevel(actualPath, rd.m_options ? &*rd.m_options : 0,
                               levelName, fIds);
       else
@@ -1202,6 +1200,7 @@ inline TPaletteP dirtyWhite(const TPaletteP &plt) {
   return out;
 }
 
+//---------------------------------------------------------------------------
 }  // namespace
 //---------------------------------------------------------------------------
 
@@ -1517,11 +1516,6 @@ bool IoCmd::saveScene(const TFilePath &path, int flags) {
   CleanupParameters oldCP(*cp);
   cp->assign(&CleanupParameters::GlobalParameters);
 
-  // Must wait for current save to finish, just in case
-  while (TApp::instance()->isSaveInProgress())
-    ;
-
-  TApp::instance()->setSaveInProgress(true);
   try {
     scene->save(scenePath, xsheet);
   } catch (const TSystemException &se) {
@@ -1529,7 +1523,6 @@ bool IoCmd::saveScene(const TFilePath &path, int flags) {
   } catch (...) {
     DVGui::error(QObject::tr("Couldn't save %1").arg(toQString(scenePath)));
   }
-  TApp::instance()->setSaveInProgress(false);
 
   cp->assign(&oldCP);
 
@@ -1590,7 +1583,6 @@ bool IoCmd::saveScene(int flags) {
   } else {
     TFilePath fp = scene->getScenePath();
     // salva la scena con il nome fp. se fp esiste gia' lo sovrascrive
-    // NOTE: saveScene already check saveInProgress
     return saveScene(fp, SILENTLY_OVERWRITE | flags);
   }
 }
@@ -1739,20 +1731,13 @@ bool IoCmd::saveLevel(TXshSimpleLevel *sl) {
 bool IoCmd::saveAll(int flags) {
   // try to save as much as possible
   // if anything is wrong, return false
-  // NOTE: saveScene already check saveInProgress
   bool result = saveScene(flags);
 
   TApp *app         = TApp::instance();
   ToonzScene *scene = app->getCurrentScene()->getScene();
   bool untitled     = scene->isUntitled();
   SceneResources resources(scene, 0);
-  // Must wait for current save to finish, just in case
-  while (TApp::instance()->isSaveInProgress())
-    ;
-
-  TApp::instance()->setSaveInProgress(true);
   resources.save(scene->getScenePath());
-  TApp::instance()->setSaveInProgress(false);
   resources.updatePaths();
 
   // for update title bar
@@ -1773,13 +1758,7 @@ void IoCmd::saveNonSceneFiles() {
   ToonzScene *scene = app->getCurrentScene()->getScene();
   bool untitled     = scene->isUntitled();
   SceneResources resources(scene, 0);
-  // Must wait for current save to finish, just in case
-  while (TApp::instance()->isSaveInProgress())
-    ;
-
-  TApp::instance()->setSaveInProgress(true);
   resources.save(scene->getScenePath());
-  TApp::instance()->setSaveInProgress(false);
   if (untitled) scene->setUntitled();
   resources.updatePaths();
 
@@ -2108,11 +2087,6 @@ bool IoCmd::loadScene(const TFilePath &path, bool updateRecentFile,
       app->getCurrentScene()->setDirtyFlag(true);
     }
   }
-
-  // Check if any column has visibility toggles with different states and the
-  // "unify visibility toggles" option is enabled
-  if (Preferences::instance()->isUnifyColumnVisibilityTogglesEnabled())
-    ColumnCmd::unifyColumnVisibilityToggles();
 
   // caching raster levels
   int cacheRasterBehavior =

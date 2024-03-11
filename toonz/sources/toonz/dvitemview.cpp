@@ -1028,7 +1028,8 @@ void DvItemViewerPanel::paintThumbnailItem(QPainter &p, int index) {
   if (!thumbnail.isNull()) p.drawPixmap(iconRect.topLeft(), thumbnail);
   //}
   else {
-    static QPixmap missingPixmap = generateIconPixmap("missing_icon");
+    static QPixmap missingPixmap =
+        QPixmap(getIconThemePath("mimetypes/60/missing_icon.svg"));
     QRect pixmapRect(rect.left() + (rect.width() - missingPixmap.width()) / 2,
                      rect.top(), missingPixmap.width(), missingPixmap.height());
     p.drawPixmap(pixmapRect.topLeft(), missingPixmap);
@@ -1250,7 +1251,7 @@ void DvItemViewerPanel::mousePressEvent(QMouseEvent *event) {
   }
   if (m_globalSelectionEnabled) m_selection->makeCurrent();
   m_currentIndex = index;
-  // if (m_viewer ) m_viewer->notifyClick(index);
+  if (m_viewer) m_viewer->notifyClick(index);
   m_startDragPosition = event->pos();
   update();
 }
@@ -1300,9 +1301,7 @@ void DvItemViewerPanel::mouseMoveEvent(QMouseEvent *event) {
 
 //-----------------------------------------------------------------------------
 
-void DvItemViewerPanel::mouseReleaseEvent(QMouseEvent *) {
-  if (m_viewer) m_viewer->notifyClick(m_currentIndex);
-}
+void DvItemViewerPanel::mouseReleaseEvent(QMouseEvent *) {}
 
 //-----------------------------------------------------------------------------
 

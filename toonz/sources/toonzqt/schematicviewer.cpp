@@ -374,7 +374,6 @@ void SchematicSceneViewer::mousePressEvent(QMouseEvent *me) {
 /*! Reimplemets the QGraphicsView::mouseMoveEvent()
  */
 void SchematicSceneViewer::mouseMoveEvent(QMouseEvent *me) {
-  // qDebug() << "[mouseMoveEvent]";
   if (m_gestureActive && m_touchDevice == QTouchDevice::TouchScreen &&
       !m_stylusUsed) {
     return;
@@ -634,7 +633,7 @@ void SchematicSceneViewer::tabletEvent(QTabletEvent *e) {
     m_stylusUsed = false;
   }
 
-  QGraphicsView::tabletEvent(e);
+  e->accept();
 }
 
 //------------------------------------------------------------------
@@ -918,9 +917,6 @@ void SchematicViewer::getNodeColor(int ltype, QColor &nodeColor) {
     break;
   case MESH_XSHLEVEL:
     nodeColor = getMeshColumnColor();
-    break;
-  case META_XSHLEVEL:
-    nodeColor = getMetaColumnColor();
     break;
   case PLT_XSHLEVEL:
     nodeColor = getPaletteColumnColor();

@@ -193,8 +193,8 @@ public:
   // Interface  tab
   QStringList getStyleSheetList() const { return m_styleSheetList; }
   bool getIconTheme() const { return getBoolValue(iconTheme); }
-  void storeOldUnits();
-  void resetOldUnits();
+  void storeOldUnits();  // OK
+  void resetOldUnits();  // OK
   QStringList getLanguageList() const { return m_languageList; }
   QMap<int, QString> getRoomMap() const { return m_roomMaps; }
 
@@ -365,10 +365,6 @@ public:
     return getBoolValue(xsheetAutopanEnabled);
   }  //!< Returns whether xsheet pans during playback.
   int getDragCellsBehaviour() const { return getIntValue(DragCellsBehaviour); }
-  int getDeleteCommandBehaviour() const {
-    return getIntValue(deleteCommandBehavior);
-  }
-  int getPasteCellsBehavior() const { return getIntValue(pasteCellsBehavior); }
   bool isIgnoreAlphaonColumn1Enabled() const {
     return getBoolValue(ignoreAlphaonColumn1Enabled);
   }
@@ -390,17 +386,11 @@ public:
   bool isShowXSheetToolbarEnabled() const {
     return getBoolValue(showXSheetToolbar);
   }
-  bool isShowXsheetBreadcrumbsEnabled() const {
-    return getBoolValue(showXsheetBreadcrumbs);
-  }
   bool isExpandFunctionHeaderEnabled() const {
     return getBoolValue(expandFunctionHeader);
   }
   bool isShowColumnNumbersEnabled() const {
     return getBoolValue(showColumnNumbers);
-  }
-  bool isUnifyColumnVisibilityTogglesEnabled() const {
-    return getBoolValue(unifyColumnVisibilityToggles);
   }
   bool isParentColorsInXsheetColumnEnabled() const {
     return getBoolValue(parentColorsInXsheetColumn);
@@ -423,9 +413,6 @@ public:
   }
   bool isShowFrameNumberWithLettersEnabled() const {
     return getBoolValue(showFrameNumberWithLetters);
-  }
-  bool isLinkColumnNameWithLevelEnabled() const {
-    return getBoolValue(linkColumnNameWithLevel);
   }
 
   // Animation  tab

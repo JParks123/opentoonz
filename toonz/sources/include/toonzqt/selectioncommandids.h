@@ -40,6 +40,5 @@
 #define MI_ExplodeChild "MI_ExplodeChild"
 #define MI_ToggleEditInPlace "MI_ToggleEditInPlace"
 #define MI_PasteNumbers "MI_PasteNumbers"
-#define MI_PasteCellContent "MI_PasteCellContent"
 
 #endif

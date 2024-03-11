@@ -87,23 +87,6 @@
         <source>Table</source>
         <translation>Mesa</translation>
     </message>
-    <message>
-        <source>Flip Object Horizontally</source>
-        <translatorcomment>Invertir objeto horizontalmente</translatorcomment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Flip Object Vertically</source>
-        <translation>Invertir objeto verticalmente</translation>
-    </message>
-    <message>
-        <source>Rotate Object Left</source>
-        <translation>Rotar objeto en sentido antihorario</translation>
-    </message>
-    <message>
-        <source>Rotate Object Right</source>
-        <translation>Rotar objeto en sentido horario</translation>
-    </message>
 </context>
 <context>
     <name>BrushTool</name>
@@ -287,7 +270,7 @@
     </message>
     <message>
         <source>Rectangular</source>
-        <translation>Marco</translation>
+        <translation>Rectangular</translation>
     </message>
     <message>
         <source>Freehand</source>
@@ -491,7 +474,7 @@
     </message>
     <message>
         <source>Rectangular</source>
-        <translation>Marco</translation>
+        <translation>Rectangular</translation>
     </message>
     <message>
         <source>Freehand</source>
@@ -574,7 +557,7 @@
     </message>
     <message>
         <source>Rectangular</source>
-        <translation>Marco</translation>
+        <translation>Rectangular</translation>
     </message>
     <message>
         <source>Freehand</source>
@@ -599,10 +582,6 @@
     <message>
         <source>Maximum Gap</source>
         <translation>Hueco máximo</translation>
-    </message>
-    <message>
-        <source>Pick+Freehand</source>
-        <translation>Escoger+Lazo</translation>
     </message>
 </context>
 <context>
@@ -695,7 +674,7 @@
     </message>
     <message>
         <source>Rectangular</source>
-        <translation>Marco</translation>
+        <translation>Rectangular</translation>
     </message>
     <message>
         <source>Freehand</source>
@@ -1307,7 +1286,7 @@ Do you want to proceed?</source>
     </message>
     <message>
         <source>Rectangular</source>
-        <translation>Marco</translation>
+        <translation>Rectangular</translation>
     </message>
     <message>
         <source>Freehand</source>
@@ -1368,7 +1347,7 @@ Do you want to proceed?</source>
     </message>
     <message>
         <source>Rectangular</source>
-        <translation>Marco</translation>
+        <translation>Rectangular</translation>
     </message>
     <message>
         <source>Freehand</source>
@@ -1438,7 +1417,7 @@ Do you want to proceed?</source>
     </message>
     <message>
         <source>Rectangular</source>
-        <translation>Marco</translation>
+        <translation>Rectangular</translation>
     </message>
     <message>
         <source>Freehand</source>
@@ -1486,22 +1465,6 @@ Do you want to proceed?</source>
     <message>
         <source>Position</source>
         <translation>Posición</translation>
-    </message>
-    <message>
-        <source>Flip Selection Horizontally</source>
-        <translation>Invertir selección horizontalmente</translation>
-    </message>
-    <message>
-        <source>Flip Selection Vertically</source>
-        <translation>Invertir selección verticalmente</translation>
-    </message>
-    <message>
-        <source>Rotate Selection Left</source>
-        <translation>Rotar selección en sentido antihorario</translation>
-    </message>
-    <message>
-        <source>Rotate Selection Right</source>
-        <translation>Rotar selección en sentido horario</translation>
     </message>
 </context>
 <context>
@@ -1925,7 +1888,7 @@ movido hacia el final de la primera página de la paleta.</translation>
     </message>
     <message>
         <source>Rectangular</source>
-        <translation>Marco</translation>
+        <translation>Rectangular</translation>
     </message>
 </context>
 <context>

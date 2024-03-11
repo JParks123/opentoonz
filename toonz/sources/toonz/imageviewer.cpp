@@ -1496,6 +1496,8 @@ void ImageViewer::tabletEvent(QTabletEvent *e) {
   } else if (e->type() == QTabletEvent::TabletRelease) {
     m_stylusUsed = false;
   }
+
+  e->accept();
 }
 
 //------------------------------------------------------------------

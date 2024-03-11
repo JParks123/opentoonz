@@ -168,7 +168,7 @@ void makeTransparent(const TRaster32P &ras) {
 
 //=============================================================================
 
-}  // namespace
+}  // namepsapce
 
 //=============================================================================
 /*! \class DefineScannerPopup
@@ -190,12 +190,14 @@ DefineScannerPopup::DefineScannerPopup()
 
   m_scanDriverOm = new QComboBox();
   m_scanDriverOm->setFixedSize(150, WidgetHeight);
-  m_scanDriverOm->addItem(tr("TWAIN"), "TWAIN");
-  m_scanDriverOm->addItem(tr("Internal"), "Internal");
+  QStringList scan;
+  scan << "TWAIN"
+       << "Internal";
+  m_scanDriverOm->addItems(scan);
   addWidget(tr("Scanner Driver:"), m_scanDriverOm);
 
   if (QSettings().value("CurrentScannerType").toString() == "Internal")
-    m_scanDriverOm->setCurrentIndex(m_scanDriverOm->findData("Internal"));
+    m_scanDriverOm->setCurrentIndex(1);
 
   QPushButton *okBtn = new QPushButton(tr("OK"), this);
   okBtn->setDefault(true);
@@ -209,7 +211,7 @@ DefineScannerPopup::DefineScannerPopup()
 //-----------------------------------------------------------------------------
 
 void DefineScannerPopup::accept() {
-  QString scannerType = m_scanDriverOm->currentData().toString();
+  QString scannerType = m_scanDriverOm->currentText();
 
   if (QSettings().value("CurrentScannerType").toString() != scannerType ||
       !ScannerHasBeenDefined) {
@@ -337,7 +339,7 @@ void ScanSettingsPopup::disconnectAll() {
   ret      = ret && m_brightness->disconnect();
   ret      = ret && m_modeOm->disconnect();
   ret      = ret && disconnect(TApp::instance()->getCurrentScene(),
-                               SIGNAL(sceneSwitched()), this, SLOT(updateUI()));
+                          SIGNAL(sceneSwitched()), this, SLOT(updateUI()));
   assert(ret);
 }
 
@@ -426,7 +428,7 @@ void ScanSettingsPopup::updateUI() {
   TScanner *scanner = TScanner::instance();
   m_scannerNameLbl->setText(scanner && scanner->getName() != ""
                                 ? scanner->getName()
-                                : tr("[no scanner]"));
+                                : "[no scanner]");
 
   m_reverseOrderCB->setChecked(params->isReverseOrder());
   m_paperFeederCB->setChecked(params->m_paperFeeder.m_value == 1.0);
@@ -556,8 +558,8 @@ AutocenterPopup::AutocenterPopup() : DVGui::Dialog(0, false, true) {
 
   bool ret = true;
   ret      = ret && connect(m_autocenter, SIGNAL(toggled(bool)), this,
-                            SLOT(onAutocenterToggled(bool)));
-  ret      = ret &&
+                       SLOT(onAutocenterToggled(bool)));
+  ret = ret &&
         connect(m_pegbarHoles, SIGNAL(currentIndexChanged(const QString &)),
                 this, SLOT(onPegbarHolesChanged(const QString &)));
   ret =
@@ -621,9 +623,9 @@ void AutocenterPopup::onPegbarHolesChanged(const QString &pg) {
                               ->getCleanupParameters();
   CleanupTypes::PEGS_SIDE type;
   if (pg == "Bottom") type = PEGS_BOTTOM;
-  if (pg == "Top") type = PEGS_TOP;
-  if (pg == "Left") type = PEGS_LEFT;
-  if (pg == "Right") type = PEGS_RIGHT;
+  if (pg == "Top") type    = PEGS_TOP;
+  if (pg == "Left") type   = PEGS_LEFT;
+  if (pg == "Right") type  = PEGS_RIGHT;
   if (cp->m_pegSide == type) return;
   cp->m_pegSide = type;
 }

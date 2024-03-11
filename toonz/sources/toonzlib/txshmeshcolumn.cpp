@@ -51,7 +51,7 @@ TXshColumn *TXshMeshColumn::clone() const {
   column->m_cells = m_cells;
   column->m_first = m_first;
   column->setColorTag(getColorTag());
-  column->setColorFilterId(getColorFilterId());
+  column->setFilterColorId(getFilterColorId());
 
   return column;
 }

@@ -33,8 +33,6 @@ public:
 
 private:
   Range m_range;
-  int m_resizePivotRow;  // pivot frame when resizing the selection with
-                         // ctrl+arrow keys
 
 public:
   TCellSelection();
@@ -42,16 +40,13 @@ public:
   ~TCellSelection();
 
   void enableCommands() override;
-  void setAlternativeCommandNames();
 
   bool isEmpty() const override;
 
   void copyCells();
   void pasteCells();
-  void doPaste();  // choose pasting behavior by preference option
   void pasteDuplicateCells();
   void deleteCells();
-  void deleteCells(bool withShift);
   void cutCells();
   void cutCells(bool withoutCopy);
 
@@ -131,7 +126,6 @@ public:
   void createBlankDrawing(int row, int col, bool inRange);
   void createBlankDrawings();
   void fillEmptyCell();
-  int getResizePivotRow() const { return m_resizePivotRow; }
 };
 
 #endif  // TCELLSELECTION_H

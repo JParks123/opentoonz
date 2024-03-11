@@ -486,11 +486,6 @@
         <source>White</source>
         <translation>Blanco</translation>
     </message>
-    <message>
-        <source>Custom Texture</source>
-        <comment>TextureStyleChooserPage</comment>
-        <translation>Textura personalizada</translation>
-    </message>
 </context>
 <context>
     <name>TScriptBinding::CenterlineVectorizer</name>

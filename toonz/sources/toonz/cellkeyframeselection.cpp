@@ -91,10 +91,7 @@ void TCellKeyframeSelection::pasteCellsKeyframes() {
 
 void TCellKeyframeSelection::deleteCellsKeyframes() {
   TUndoManager::manager()->beginBlock();
-  // clear cells without shifting
-  // TODO: behavior of deleting cell+keyframe should also follow the preference
-  // option.
-  m_cellSelection->deleteCells(false);
+  m_cellSelection->deleteCells();
   m_keyframeSelection->deleteKeyframes();
   TUndoManager::manager()->endBlock();
 }

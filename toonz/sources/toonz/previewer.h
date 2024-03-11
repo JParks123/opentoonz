@@ -88,8 +88,6 @@ public:
 
   std::vector<UCHAR> &getProgressBarStatus() const;
 
-  void clearAllUnfinishedFrames();
-
 private:
   friend class Imp;
   void emitStartedFrame(const TRenderPort::RenderData &renderData);

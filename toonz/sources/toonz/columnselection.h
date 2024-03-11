@@ -30,7 +30,6 @@ public:
   const std::set<int> &getIndices() const { return m_indices; }
 
   void enableCommands() override;
-  void setAlternativeCommandNames();
 
   void copyColumns();
   void pasteColumns();

@@ -2,24 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ja_JP" sourcelanguage="en">
 <context>
-    <name>APngWriterProperties</name>
-    <message>
-        <location filename="../../image/ffmpeg/tiio_apng.cpp" line="225"/>
-        <source>Scale</source>
-        <translation>スケール(%)</translation>
-    </message>
-    <message>
-        <location filename="../../image/ffmpeg/tiio_apng.cpp" line="226"/>
-        <source>Looping</source>
-        <translation>繰り返し再生</translation>
-    </message>
-    <message>
-        <location filename="../../image/ffmpeg/tiio_apng.cpp" line="227"/>
-        <source>Write as .png</source>
-        <translation>拡張子pngで保存</translation>
-    </message>
-</context>
-<context>
     <name>AviWriterProperties</name>
     <message>
         <location filename="../../image/avi/tiio_avi.cpp" line="1182"/>
@@ -35,92 +17,64 @@
 <context>
     <name>ExrWriterProperties</name>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="290"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="227"/>
         <source>Bits Per Pixel</source>
         <translation>色深度</translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="292"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="228"/>
         <source>48(RGB Half Float)</source>
         <translation>48ビット (RGB ハーフ浮動小数)</translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="293"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="229"/>
         <source>64(RGBA Half Float)</source>
         <translation>64ビット (RGBA ハーフ浮動小数)</translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="294"/>
-        <source>96(RGB Float)</source>
-        <translation>96ビット (RGB 浮動小数)</translation>
-    </message>
-    <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="295"/>
-        <source>128(RGBA Float)</source>
-        <translation>128ビット (RGBA 浮動小数)</translation>
-    </message>
-    <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="299"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="231"/>
         <source>Compression Type</source>
         <translation>圧縮方式</translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="301"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="233"/>
         <source>No compression</source>
         <translation>圧縮なし</translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="304"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="236"/>
         <source>Run Length Encoding (RLE)</source>
         <translation>Run-Length エンコーディング (RLE)</translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="307"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="239"/>
         <source>ZIP compression per Scanline (ZIPS)</source>
         <translation>Zip圧縮 スキャンライン毎 (ZIPS)</translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="310"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="242"/>
         <source>ZIP compression per scanline band (ZIP)</source>
         <translation>Zip圧縮 スキャンライン バンド毎 (ZIP)</translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="313"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="245"/>
         <source>PIZ-based wavelet compression (PIZ)</source>
         <translation>PIZベース ウェーブレット圧縮 (PIZ)</translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="315"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="247"/>
         <source>Storage Type</source>
         <translation>ストレージ タイプ</translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="316"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="248"/>
         <source>Scan-line based</source>
         <translation>イメージをスキャンラインとして保管</translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="317"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="249"/>
         <source>Tile based</source>
         <translation>イメージをタイルとして保管</translation>
-    </message>
-    <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="319"/>
-        <source>Color Space Gamma</source>
-        <translation>色空間ガンマ</translation>
-    </message>
-</context>
-<context>
-    <name>FFMovWriterProperties</name>
-    <message>
-        <location filename="../../image/ffmpeg/tiio_ff_mov.cpp" line="234"/>
-        <source>Quality</source>
-        <translation>品質</translation>
-    </message>
-    <message>
-        <location filename="../../image/ffmpeg/tiio_ff_mov.cpp" line="235"/>
-        <source>Scale</source>
-        <translation>スケール(%)</translation>
     </message>
 </context>
 <context>
@@ -239,13 +193,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../image/ffmpeg/tiio_ffmpeg.cpp" line="172"/>
+        <location filename="../../image/ffmpeg/tiio_ffmpeg.cpp" line="213"/>
         <source>FFmpeg returned error-code: %1</source>
         <translation>FFmpeg処理はエラーコード %1 で終了しました</translation>
     </message>
     <message>
-        <location filename="../../image/ffmpeg/tiio_ffmpeg.cpp" line="160"/>
-        <location filename="../../image/ffmpeg/tiio_ffmpeg.cpp" line="176"/>
+        <location filename="../../image/ffmpeg/tiio_ffmpeg.cpp" line="217"/>
         <source>FFmpeg timed out.
 Please check the file for errors.
 If the file doesn&apos;t play or is incomplete, 

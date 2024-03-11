@@ -2,24 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ru_RU">
 <context>
-    <name>APngWriterProperties</name>
-    <message>
-        <location filename="../../image/ffmpeg/tiio_apng.cpp" line="225"/>
-        <source>Scale</source>
-        <translation>Масштаб</translation>
-    </message>
-    <message>
-        <location filename="../../image/ffmpeg/tiio_apng.cpp" line="226"/>
-        <source>Looping</source>
-        <translation>Зациклить</translation>
-    </message>
-    <message>
-        <location filename="../../image/ffmpeg/tiio_apng.cpp" line="227"/>
-        <source>Write as .png</source>
-        <translation>Записать в формате .png</translation>
-    </message>
-</context>
-<context>
     <name>AviWriterProperties</name>
     <message>
         <location filename="../../image/avi/tiio_avi.cpp" line="1182"/>
@@ -35,93 +17,64 @@
 <context>
     <name>ExrWriterProperties</name>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="290"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="227"/>
         <source>Bits Per Pixel</source>
-        <translatorcomment>глубина цвета</translatorcomment>
-        <translation>Бит на пиксель</translation>
+        <translation type="unfinished">Битов на пиксель</translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="292"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="228"/>
         <source>48(RGB Half Float)</source>
-        <translation>48(RGB Плавающая  половина)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="293"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="229"/>
         <source>64(RGBA Half Float)</source>
-        <translation>54(RGB Плавающая  половина)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="294"/>
-        <source>96(RGB Float)</source>
-        <translation>96(RGB Плавающая)</translation>
-    </message>
-    <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="295"/>
-        <source>128(RGBA Float)</source>
-        <translation>128(RGBA Плавающая)</translation>
-    </message>
-    <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="299"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="231"/>
         <source>Compression Type</source>
-        <translation>Сжатый тип</translation>
+        <translation type="unfinished">Тип сжатия</translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="301"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="233"/>
         <source>No compression</source>
-        <translation>Не сжатый</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="304"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="236"/>
         <source>Run Length Encoding (RLE)</source>
-        <translation>Выполнение длительности кодированияия (ВДК)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="307"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="239"/>
         <source>ZIP compression per Scanline (ZIPS)</source>
-        <translation>Zip-cжатие  по линии сканирования (ZIPS)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="310"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="242"/>
         <source>ZIP compression per scanline band (ZIP)</source>
-        <translation>Zip-cжатие  на полосу сканирования (ZIP)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="313"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="245"/>
         <source>PIZ-based wavelet compression (PIZ)</source>
-        <translation>Вейвлет-сжатие на основе PIZ (PIZ)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="315"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="247"/>
         <source>Storage Type</source>
-        <translation>Тип хранилища</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="316"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="248"/>
         <source>Scan-line based</source>
-        <translation>Сканирование на основе линии</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="317"/>
+        <location filename="../../image/exr/tiio_exr.cpp" line="249"/>
         <source>Tile based</source>
-        <translation>На основе плитки</translation>
-    </message>
-    <message>
-        <location filename="../../image/exr/tiio_exr.cpp" line="319"/>
-        <source>Color Space Gamma</source>
-        <translation>Гамма цветового пространства</translation>
-    </message>
-</context>
-<context>
-    <name>FFMovWriterProperties</name>
-    <message>
-        <location filename="../../image/ffmpeg/tiio_ff_mov.cpp" line="234"/>
-        <source>Quality</source>
-        <translation>Качество</translation>
-    </message>
-    <message>
-        <location filename="../../image/ffmpeg/tiio_ff_mov.cpp" line="235"/>
-        <source>Scale</source>
-        <translation>Масштаб</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -129,67 +82,67 @@
     <message>
         <location filename="../../image/ffmpeg/tiio_gif.cpp" line="310"/>
         <source>Global Palette</source>
-        <translation>Глобальная палитра</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../image/ffmpeg/tiio_gif.cpp" line="311"/>
         <source>Global Palette + Sierra Dither</source>
-        <translation>Глобальная палитра + сглаживание Сиерра</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../image/ffmpeg/tiio_gif.cpp" line="312"/>
         <source>Global Palette + Bayer2 Dither</source>
-        <translation>Глобальная палитра + сглаживание по Байеру 2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../image/ffmpeg/tiio_gif.cpp" line="313"/>
         <source>Global Palette + Bayer1 Dither</source>
-        <translation>Глобальная палитра + сглаживание по Байеру 1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../image/ffmpeg/tiio_gif.cpp" line="314"/>
         <source>Diff Palette</source>
-        <translation>Палитра различий</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../image/ffmpeg/tiio_gif.cpp" line="315"/>
         <source>Diff Palette + Sierra Dither</source>
-        <translation>Палитра различий+ сглаживание Сиерра</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../image/ffmpeg/tiio_gif.cpp" line="316"/>
         <source>Diff Palette + Bayer2 Dither</source>
-        <translation>Палитра различий+ сглаживание по Байеру 2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../image/ffmpeg/tiio_gif.cpp" line="317"/>
         <source>Diff Palette + Bayer1 Dither</source>
-        <translation>Палитра различий+ сглаживание по Байеру 1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../image/ffmpeg/tiio_gif.cpp" line="318"/>
         <source>New Pal Per Frame</source>
-        <translation>Создайте новую палитру кадров</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../image/ffmpeg/tiio_gif.cpp" line="319"/>
         <source>New Pal Per Frame + Sierra Dither</source>
-        <translation>Создайте новую палитру кадров+ сглаживание Сиерра</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../image/ffmpeg/tiio_gif.cpp" line="320"/>
         <source>New Pal Per Frame + Bayer2 Dither</source>
-        <translation>Создайте новую палитру кадров+ сглаживание по Байеру 2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../image/ffmpeg/tiio_gif.cpp" line="321"/>
         <source>New Pal Per Frame + Bayer1 Dither</source>
-        <translation>Создайте новую палитру кадров+ сглаживание по Байеру 1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../image/ffmpeg/tiio_gif.cpp" line="322"/>
         <source>Opaque, Dither, 256 Colors Only</source>
-        <translation>Непрозрачный, размытый, только 256 цветов</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../image/ffmpeg/tiio_gif.cpp" line="335"/>
@@ -204,12 +157,12 @@
     <message>
         <location filename="../../image/ffmpeg/tiio_gif.cpp" line="337"/>
         <source>Mode</source>
-        <translation>Режим</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../image/ffmpeg/tiio_gif.cpp" line="338"/>
         <source>Max Colors</source>
-        <translation>Максимальное количество цветов</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Generate Palette</source>
@@ -240,13 +193,12 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../image/ffmpeg/tiio_ffmpeg.cpp" line="172"/>
+        <location filename="../../image/ffmpeg/tiio_ffmpeg.cpp" line="213"/>
         <source>FFmpeg returned error-code: %1</source>
-        <translation>FFmpeg вернул код ошибки: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../image/ffmpeg/tiio_ffmpeg.cpp" line="160"/>
-        <location filename="../../image/ffmpeg/tiio_ffmpeg.cpp" line="176"/>
+        <location filename="../../image/ffmpeg/tiio_ffmpeg.cpp" line="217"/>
         <source>FFmpeg timed out.
 Please check the file for errors.
 If the file doesn&apos;t play or is incomplete, 

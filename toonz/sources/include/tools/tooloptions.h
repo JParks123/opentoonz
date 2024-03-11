@@ -430,8 +430,6 @@ class GeometricToolOptionsBox final : public ToolOptionsBox {
   ToolOptionCombo *m_snapSensitivityCombo;
   TTool *m_tool;
 
-  void filterControls();
-
 public:
   GeometricToolOptionsBox(QWidget *parent, TTool *tool,
                           TPaletteHandle *pltHandle, ToolHandle *toolHandle);
@@ -776,6 +774,7 @@ public:
 class DVAPI ToolOptions final : public QFrame {
   Q_OBJECT
 
+  int m_width, m_height;
   std::map<TTool *, ToolOptionsBox *> m_panels;
   QWidget *m_panel;
 
@@ -792,7 +791,6 @@ protected:
 public slots:
 
   void onToolSwitched();
-  void onToolOptionsBoxChanged();
   void onToolChanged();
   void onStageObjectChange();
 

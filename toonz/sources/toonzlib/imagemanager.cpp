@@ -414,7 +414,7 @@ void ImageManager::loadAllTlvIconsAndPutInCache(
           m_imp->m_builders.find(level->getImageId(fids[f]));
       if (it != m_imp->m_builders.end()) {
         const ImageBuilderP &builder = it->second;
-        builder->setImageCached();
+        builder->setImageCachedAndModified();
         builder->m_info = info;
       }
     }

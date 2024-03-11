@@ -302,13 +302,6 @@ bool TXsheet::setCell(int row, int col, const TXshCell &cell) {
   else if (row >= m_imp->m_frameCount)
     m_imp->m_frameCount = row + 1;
 
-  // set the level name to the column
-  if (wasColumnEmpty && cellColumn && !cell.isEmpty() &&
-      Preferences::instance()->isLinkColumnNameWithLevelEnabled()) {
-    getStageObject(TStageObjectId::ColumnId(col))
-        ->setName(to_string(cell.m_level->getName()));
-  }
-
   TNotifier::instance()->notify(TXsheetChange());
 
   return true;
@@ -392,14 +385,6 @@ bool TXsheet::setCells(int row, int col, int rowCount, const TXshCell cells[]) {
     if (oldColRowCount == m_imp->m_frameCount &&
         newColRowCount < m_imp->m_frameCount)
       updateFrameCount();
-  }
-  row + 1;
-
-  // set the level name to the column
-  if (wasColumnEmpty && i < rowCount &&
-      Preferences::instance()->isLinkColumnNameWithLevelEnabled()) {
-    getStageObject(TStageObjectId::ColumnId(col))
-        ->setName(to_string(cells[i].m_level->getName()));
   }
 
   return true;
@@ -885,7 +870,7 @@ void TXsheet::eachCells(int r0, int c0, int r1, int c1, int type) {
 //-----------------------------------------------------------------------------
 /*! force cells order in n-steps. returns the row amount after process
  */
-int TXsheet::reframeCells(int r0, int r1, int col, int step, int withBlank) {
+int TXsheet::reframeCells(int r0, int r1, int col, int type, int withBlank) {
   // Row amount in the selection
   int nr = r1 - r0 + 1;
 
@@ -914,10 +899,10 @@ int TXsheet::reframeCells(int r0, int r1, int col, int step, int withBlank) {
   if (cells.empty()) return 0;
 
   // row amount after n-step
-  int nrows = cells.size() * step;
+  int nrows = cells.size() * type;
 
   if (withBlank > 0) {
-    nrows += cells.size() * withBlank * step;
+    nrows += cells.size() * withBlank * type;
   }
 
   // if needed, insert cells
@@ -930,19 +915,19 @@ int TXsheet::reframeCells(int r0, int r1, int col, int step, int withBlank) {
   }
 
   for (int i = r0, k = 0; i < r0 + nrows; k++) {
-    for (int i1 = 0; i1 < step; i1++) {
+    for (int i1 = 0; i1 < type; i1++) {
       if (cells[k].isEmpty())
         clearCells(i + i1, col);
       else
         setCell(i + i1, col, cells[k]);
     }
-    i += step;  // dipende dal tipo di step (2 o 3 per ora)
+    i += type;  // dipende dal tipo di step (2 o 3 per ora)
 
     if (withBlank > 0) {
-      for (int i1 = 0; i1 < withBlank * step; i1++) {
+      for (int i1 = 0; i1 < withBlank * type; i1++) {
         clearCells(i + i1, col);
       }
-      i += withBlank * step;
+      i += withBlank * type;
     }
   }
 

@@ -76,8 +76,7 @@
 
 namespace {
 
-const bool checkContainsSingleLevel(TXshColumn *column,
-                                    const std::string &columnName) {
+const bool checkContainsSingleLevel(TXshColumn *column) {
   TXshLevel *level           = nullptr;
   TXshCellColumn *cellColumn = column->getCellColumn();
   if (cellColumn) {
@@ -92,9 +91,7 @@ const bool checkContainsSingleLevel(TXshColumn *column,
       else if (lvl != level)
         return false;
     }
-    // column name should be unspecified or same as the content level
-    return level != nullptr &&
-           (columnName.empty() || level->getName() == to_wstring(columnName));
+    return level != nullptr;
   }
   return false;
 }
@@ -859,26 +856,6 @@ void RenameCellField::renameCell() {
       // previous frames
       // (when editing not empty column)
       if (xsheet->isColumnEmpty(c)) {
-        // find a level with name same as the column (if the preferences option
-        // is set to do so)
-        if (Preferences::instance()->isLinkColumnNameWithLevelEnabled() &&
-            xsheet->getStageObject(TStageObjectId::ColumnId(c))
-                ->hasSpecifiedName()) {
-          std::string columnName =
-              xsheet->getStageObject(TStageObjectId::ColumnId(c))->getName();
-          TLevelSet *levelSet = scene->getLevelSet();
-          TXshLevel *xl       = levelSet->getLevel(to_wstring(columnName));
-          TXshSimpleLevel *sl = (xl) ? xl->getSimpleLevel() : nullptr;
-          if (sl &&
-              (!sl->isEmpty() || sl->getFirstFid() != TFrameId::NO_FRAME)) {
-            sl->formatFId(fid, tmplFId);
-            cells.append(TXshCell(xl, fid));
-            changed      = true;
-            hasFrameZero = (fid.getNumber() == 0 && xl->getSimpleLevel() &&
-                            xl->getSimpleLevel()->isFid(fid));
-            continue;
-          }
-        }
         cells.append(TXshCell());
         continue;
       }
@@ -952,8 +929,7 @@ void RenameCellField::renameCell() {
 
   if (fid.getNumber() == 0 && !hasFrameZero) {
     TCellSelection::Range range = cellSelection->getSelectedCells();
-    // clear cells without shifting
-    cellSelection->deleteCells(false);
+    cellSelection->deleteCells();
     // revert cell selection
     cellSelection->selectCells(range.m_r0, range.m_c0, range.m_r1, range.m_c1);
   } else if (cells.size() == 1)
@@ -1293,16 +1269,10 @@ void CellArea::drawCells(QPainter &p, const QRect toBeUpdated) {
       isPaletteColumn   = column->getPaletteColumn() != 0;
       isSoundTextColumn = column->getSoundTextColumn() != 0;
       if (Preferences::instance()->getLevelNameDisplayType() ==
-          Preferences::ShowLevelNameOnColumnHeader) {
-        std::string columnName = "";
-        if (col >= 0 && xsh->getStageObject(TStageObjectId::ColumnId(col))
-                            ->hasSpecifiedName())
-          columnName =
-              xsh->getStageObject(TStageObjectId::ColumnId(col))->getName();
+          Preferences::ShowLevelNameOnColumnHeader)
         showLevelName =
             (isSoundColumn || isPaletteColumn || isSoundTextColumn ||
-             !checkContainsSingleLevel(column, columnName));
-      }
+             !checkContainsSingleLevel(column));
     }
     // check if the column is reference
     bool isReference = true;
@@ -1441,9 +1411,6 @@ void CellArea::drawExtenderHandles(QPainter &p) {
   // selected cells range
   TCellSelection *cellSelection = m_viewer->getCellSelection();
   if (cellSelection->isEmpty() || m_viewer->areSoundCellsSelected()) return;
-
-  // if the drag move is disabled, the extender handles won't appear
-  if (Preferences::instance()->getDragCellsBehaviour() == 2) return;
 
   int selRow0, selCol0, selRow1, selCol1;
   cellSelection->getSelectedCells(selRow0, selCol0, selRow1, selCol1);
@@ -3364,7 +3331,7 @@ void CellArea::mousePressEvent(QMouseEvent *event) {
       if (TCellKeyframeSelection *cellKeyframeSelection =
               dynamic_cast<TCellKeyframeSelection *>(selection))
         setDragTool(XsheetGUI::DragTool::makeCellKeyframeMoverTool(m_viewer));
-      else if (Preferences::instance()->getDragCellsBehaviour() != 2)
+      else
         setDragTool(XsheetGUI::DragTool::makeLevelMoverTool(m_viewer));
     } else {
       m_viewer->getKeyframeSelection()->selectNone();
@@ -3522,7 +3489,7 @@ void CellArea::mouseMoveEvent(QMouseEvent *event) {
 //-----------------------------------------------------------------------------
 
 void CellArea::mouseReleaseEvent(QMouseEvent *event) {
-  m_viewer->setQtModifiers(Qt::KeyboardModifiers());
+  m_viewer->setQtModifiers(0);
   m_isMousePressed = false;
   m_viewer->stopAutoPan();
   m_isPanning = false;
@@ -3893,12 +3860,7 @@ void CellArea::createCellMenu(QMenu &menu, bool isCellSelected, TXshCell cell,
     QMenu *pasteSpecialMenu = new QMenu(tr("Paste Special"), this);
     {
       pasteSpecialMenu->addAction(cmdManager->getAction(MI_PasteInto));
-      // the "standard" paste behavior for MI_Paste is specified in the
-      // preferences. here we display the alternative behavior.
-      if (Preferences::instance()->getPasteCellsBehavior() == 0)
-        pasteSpecialMenu->addAction(cmdManager->getAction(MI_PasteNumbers));
-      else
-        pasteSpecialMenu->addAction(cmdManager->getAction(MI_PasteCellContent));
+      pasteSpecialMenu->addAction(cmdManager->getAction(MI_PasteNumbers));
       if (!soundTextCellsSelected) {
         pasteSpecialMenu->addAction(cmdManager->getAction(MI_PasteDuplicate));
       }
@@ -4134,8 +4096,8 @@ void CellArea::createKeyLineMenu(QMenu &menu, int row, int col) {
   QActionGroup *actionGroup = new QActionGroup(this);
   int i;
   for (i = 1; i <= 4; i++) {
-    QAction *act =
-        new QAction(tr("Interpolation on %1's").arg(QString::number(i)), this);
+    QAction *act = new QAction(
+        QString("Interpolation on ") + QString::number(i) + "'s", this);
     // if (paramStep == i) act->setEnabled(false);
     QList<QVariant> list;
     list.append(QVariant(i));

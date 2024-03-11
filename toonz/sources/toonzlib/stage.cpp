@@ -36,8 +36,6 @@
 #include "toonz/autoclose.h"
 #include "toonz/txshleveltypes.h"
 #include "imagebuilders.h"
-#include "toonz/toonzscene.h"
-#include "toonz/sceneproperties.h"
 
 // Qt includes
 #include <QImage>
@@ -48,7 +46,7 @@
 
 #include "toonz/stage.h"
 
-// #define  NUOVO_ONION
+//#define  NUOVO_ONION
 
 //=============================================================================
 /*! \namespace Stage
@@ -427,15 +425,14 @@ void StageBuilder::addCell(PlayerSet &players, ToonzScene *scene, TXsheet *xsh,
     player.m_dpiAff = sl ? getDpiAffine(sl, cell.m_frameId) : TAffine();
     player.m_onionSkinDistance = m_onionSkinDistance;
     // when visiting the subxsheet, valuate the subxsheet column index
-    bool isCurrent               = (subSheetColIndex >= 0)
-                                       ? (subSheetColIndex == m_currentColumnIndex)
-                                       : (col == m_currentColumnIndex);
+    bool isCurrent = (subSheetColIndex >= 0)
+                         ? (subSheetColIndex == m_currentColumnIndex)
+                         : (col == m_currentColumnIndex);
     player.m_isCurrentColumn     = isCurrent;
     player.m_ancestorColumnIndex = m_ancestorColumnIndex;
     player.m_masks               = m_masks;
     player.m_opacity             = column->getOpacity();
-    player.m_filterColor =
-        scene->getProperties()->getColorFilterColor(column->getColorFilterId());
+    player.m_filterColor         = column->getFilterColor();
 
     if (m_subXSheetStack.empty()) {
       player.m_z         = columnZ;

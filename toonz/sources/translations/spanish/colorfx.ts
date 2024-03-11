@@ -21,29 +21,6 @@
     </message>
 </context>
 <context>
-    <name>FlowLineStrokeStyle</name>
-    <message>
-        <source>Density</source>
-        <translation>Densidad</translation>
-    </message>
-    <message>
-        <source>Extension</source>
-        <translation>Extender</translation>
-    </message>
-    <message>
-        <source>Width Scale</source>
-        <translation>Escalar ancho</translation>
-    </message>
-    <message>
-        <source>Straighten Ends</source>
-        <translation>Enderezar extremos</translation>
-    </message>
-    <message>
-        <source>Flow Line</source>
-        <translation>Línea de flujo</translation>
-    </message>
-</context>
-<context>
     <name>MovingSolidColor</name>
     <message>
         <source>Offset</source>

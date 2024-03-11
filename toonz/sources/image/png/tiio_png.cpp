@@ -278,7 +278,7 @@ public:
     png_bytep row_pointer = m_rowBuffer.get();
     png_read_row(m_png_ptr, row_pointer, NULL);
 
-    writeRow(buffer, x0, x1);
+    writeRow(buffer);
 
     if (m_tempBuffer && m_y == ly) {
       m_tempBuffer.reset();
@@ -320,7 +320,7 @@ public:
     png_bytep row_pointer = m_rowBuffer.get();
     png_read_row(m_png_ptr, row_pointer, NULL);
 
-    writeRow(buffer, x0, x1);
+    writeRow(buffer);
 
     if (m_tempBuffer && m_y == ly) {
       m_tempBuffer.reset();
@@ -347,7 +347,7 @@ public:
 
   Tiio::RowOrder getRowOrder() const override { return Tiio::TOP2BOTTOM; }
 
-  void writeRow(char *buffer, int x0, int x1) {
+  void writeRow(char *buffer) {
     if (m_color_type == PNG_COLOR_TYPE_RGB_ALPHA ||
         m_color_type == PNG_COLOR_TYPE_GRAY_ALPHA ||
         m_color_type == PNG_COLOR_TYPE_PALETTE) {  // PNG_COLOR_TYPE_PALETTE is
@@ -355,8 +355,7 @@ public:
       if (m_bit_depth == 16) {
         TPixel32 *pix = (TPixel32 *)buffer;
         int i         = -2;
-        i += x0 * 2 * 4;
-        for (int j = x0; j <= x1; j++) {
+        for (int j = 0; j < m_info.m_lx; j++) {
 #if defined(TNZ_MACHINE_CHANNEL_ORDER_MRGB)
           pix[j].m = m_rowBuffer[i = i + 2];
           pix[j].r = m_rowBuffer[i = i + 2];
@@ -387,8 +386,7 @@ public:
       } else {
         TPixel32 *pix = (TPixel32 *)buffer;
         int i         = 0;
-        i += x0 * 4;
-        for (int j = x0; j <= x1; j++) {
+        for (int j = 0; j < m_info.m_lx; j++) {
 #if defined(TNZ_MACHINE_CHANNEL_ORDER_MRGB)
           pix[j].m = m_rowBuffer[i++];
           pix[j].r = m_rowBuffer[i++];
@@ -421,8 +419,7 @@ public:
       if (m_bit_depth == 16) {
         TPixel32 *pix = (TPixel32 *)buffer;
         int i         = -2;
-        i += x0 * 2 * 3;
-        for (int j = x0; j <= x1; j++) {
+        for (int j = 0; j < m_info.m_lx; j++) {
 #if defined(TNZ_MACHINE_CHANNEL_ORDER_MRGB) ||                                 \
     defined(TNZ_MACHINE_CHANNEL_ORDER_RGBM)
           pix[j].r = m_rowBuffer[i = i + 2];
@@ -441,8 +438,7 @@ public:
       } else {
         TPixel32 *pix = (TPixel32 *)buffer;
         int i         = 0;
-        i += x0 * 3;
-        for (int j = x0; j <= x1; j++) {
+        for (int j = 0; j < m_info.m_lx; j++) {
 #if defined(TNZ_MACHINE_CHANNEL_ORDER_MRGB) ||                                 \
     defined(TNZ_MACHINE_CHANNEL_ORDER_RGBM)
           pix[j].r = m_rowBuffer[i++];
@@ -462,15 +458,14 @@ public:
     }
   }
 
-  void writeRow(short *buffer, int x0, int x1) {
+  void writeRow(short *buffer) {
     if (m_color_type == PNG_COLOR_TYPE_RGB_ALPHA ||
         m_color_type == PNG_COLOR_TYPE_GRAY_ALPHA ||
         m_color_type == PNG_COLOR_TYPE_PALETTE) {  // PNG_COLOR_TYPE_PALETTE is
                                                    // expanded to RGBA
       TPixel64 *pix = (TPixel64 *)buffer;
       int i         = -2;  // 0;
-      i += x0 * 2 * 4;
-      for (int j = x0; j <= x1; j++) {
+      for (int j = 0; j < m_info.m_lx; j++) {
 #if defined(TNZ_MACHINE_CHANNEL_ORDER_MRGB) ||                                 \
     defined(TNZ_MACHINE_CHANNEL_ORDER_RGBM)
         pix[j].r = mySwap(m_rowBuffer[i = i + 2]);  // i++
@@ -495,8 +490,7 @@ public:
     {       // grayscale e' gestito come RGB perche' si usa png_set_gray_to_rgb
       TPixel64 *pix = (TPixel64 *)buffer;
       int i         = -2;
-      i += x0 * 2 * 3;
-      for (int j = x0; j <= x1; j++) {
+      for (int j = 0; j < m_info.m_lx; j++) {
 #if defined(TNZ_MACHINE_CHANNEL_ORDER_MRGB) ||                                 \
     defined(TNZ_MACHINE_CHANNEL_ORDER_RGBM)
         pix[j].r = mySwap(m_rowBuffer[i = i + 2]);
@@ -668,8 +662,8 @@ public:
 
     // tutto quello che segue lo metto in una funzione in cui scrivo il buffer
     // di restituzione della readLine
-    // è una funzione comune alle ReadLine
-    writeRow(buffer, x0, x1);
+    //è una funzione comune alle ReadLine
+    writeRow(buffer);
   }
 
   void readLineInterlace(short *buffer, int x0, int x1, int shrink) {
@@ -745,8 +739,8 @@ public:
 
     // tutto quello che segue lo metto in una funzione in cui scrivo il buffer
     // di restituzione della readLine
-    // è una funzione comune alle ReadLine
-    writeRow(buffer, x0, x1);
+    //è una funzione comune alle ReadLine
+    writeRow(buffer);
   }
 };
 

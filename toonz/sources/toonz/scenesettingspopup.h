@@ -33,24 +33,6 @@ protected slots:
   void onNameChanged();
 };
 
-class ColorFiltersPopup final : public QDialog {
-  Q_OBJECT
-  struct FilterField {
-    DVGui::ColorField *colorField;
-    QLineEdit *nameField;
-    QPushButton *clearBtn;
-  };
-
-  QMap<int, FilterField> m_fields;
-
-public:
-  ColorFiltersPopup(QWidget *parent);
-  void updateContents();
-protected slots:
-  void onColorChanged(const TPixel32 &, bool);
-  void onNameChanged();
-  void onClearButtonClicked();
-};
 //=============================================================================
 // SceneSettingsPopup
 //-----------------------------------------------------------------------------
@@ -75,7 +57,6 @@ class SceneSettingsPopup final : public QDialog {
   TSceneProperties *getProperties() const;
 
   CellMarksPopup *m_cellMarksPopup;
-  ColorFiltersPopup *m_colorFiltersPopup;
 
   DVGui::DoubleLineEdit *m_colorSpaceGammaFld;
 
@@ -104,7 +85,6 @@ public slots:
   void onColorFilterOnRenderChanged();
 
   void onEditCellMarksButtonClicked();
-  void onEditColorFiltersButtonClicked();
 };
 
 #endif  // SCENESETTINGSPOPUP_H

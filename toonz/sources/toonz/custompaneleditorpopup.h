@@ -17,7 +17,6 @@
 #include <QDomElement>
 class QComboBox;
 class CustomPanelUIField;
-class CommandListTree;
 
 enum UiType { Button = 0, Scroller_Back, Scroller_Fore, TypeCount };
 struct UiEntry {
@@ -104,13 +103,30 @@ protected:
 };
 
 //=============================================================================
+// CustomPanelCommandListTree
+//-----------------------------------------------------------------------------
+
+class CustomPanelCommandListTree final : public QTreeWidget {
+  Q_OBJECT
+
+  void addFolder(const QString& title, int commandType,
+                 QTreeWidgetItem* parentFolder = 0);
+
+public:
+  CustomPanelCommandListTree(QWidget* parent = 0);
+
+protected:
+  void mousePressEvent(QMouseEvent*) override;
+};
+
+//=============================================================================
 // CustomPanelEditorPopup
 //-----------------------------------------------------------------------------
 
 class CustomPanelEditorPopup : public DVGui::Dialog {
   Q_OBJECT
 private:
-  CommandListTree* m_commandListTree;
+  CustomPanelCommandListTree* m_commandListTree;
   QWidget* m_UiFieldsContainer;
   UiPreviewArea* m_previewArea;
 
@@ -139,7 +155,6 @@ protected slots:
   void onPreviewClicked(int id);
   void onPreviewDropped(int id, QString cmdId, bool fromTree);
   void onRegister();
-  void onSearchTextChanged(const QString& text);
 };
 
 #endif

@@ -300,7 +300,6 @@ public:
   void refreshChildren() override;
   QPixmap getPixmap(bool isOpen) const override;
   bool isFolder() const override { return true; }
-  DvDirModelNode *createNetworkFolderNode(const TFilePath &path);
 };
 
 //-----------------------------------------------------------------------------

@@ -19,37 +19,9 @@
         <translation>Šum</translation>
     </message>
     <message>
-        <location filename="../../colorfx/regionstyles.h" line="467"/>
+        <location filename="../../colorfx/regionstyles.h" line="460"/>
         <source>Irregular</source>
         <translation>Nepravidelnost</translation>
-    </message>
-</context>
-<context>
-    <name>FlowLineStrokeStyle</name>
-    <message>
-        <location filename="../../colorfx/flowlinestrokestyle.cpp" line="129"/>
-        <source>Density</source>
-        <translation type="unfinished">Hustota</translation>
-    </message>
-    <message>
-        <location filename="../../colorfx/flowlinestrokestyle.cpp" line="131"/>
-        <source>Extension</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../colorfx/flowlinestrokestyle.cpp" line="133"/>
-        <source>Width Scale</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../colorfx/flowlinestrokestyle.cpp" line="135"/>
-        <source>Straighten Ends</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../colorfx/flowlinestrokestyle.h" line="58"/>
-        <source>Flow Line</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -98,7 +70,7 @@
         <translation>Odstup</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="1275"/>
+        <location filename="../../colorfx/strokestyles.h" line="1240"/>
         <source>OutlineViewer(OnlyDebug)</source>
         <translation>Prohlížeč obrysu (jen ladění)</translation>
     </message>
@@ -121,7 +93,7 @@
         <translation>Délka</translation>
     </message>
     <message>
-        <location filename="../../colorfx/regionstyles.h" line="121"/>
+        <location filename="../../colorfx/regionstyles.h" line="120"/>
         <source>Hatched Shading</source>
         <translation>Šrafování</translation>
     </message>
@@ -139,7 +111,7 @@
         <translation>Velikost</translation>
     </message>
     <message>
-        <location filename="../../colorfx/regionstyles.h" line="171"/>
+        <location filename="../../colorfx/regionstyles.h" line="169"/>
         <source>Plain Shadow</source>
         <translation>Jednoduchý stín</translation>
     </message>
@@ -152,7 +124,7 @@
         <translation>Stříkací pistole</translation>
     </message>
     <message>
-        <location filename="../../colorfx/rasterstyles.h" line="70"/>
+        <location filename="../../colorfx/rasterstyles.h" line="69"/>
         <source>Blur value</source>
         <translation>Stupeň měkkosti</translation>
     </message>
@@ -160,7 +132,7 @@
 <context>
     <name>TBiColorStrokeStyle</name>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="594"/>
+        <location filename="../../colorfx/strokestyles.h" line="577"/>
         <source>Shade</source>
         <translation>Stínování</translation>
     </message>
@@ -168,7 +140,7 @@
 <context>
     <name>TBlendRasterStyle</name>
     <message>
-        <location filename="../../colorfx/rasterstyles.h" line="123"/>
+        <location filename="../../colorfx/rasterstyles.h" line="122"/>
         <source>Blend</source>
         <translation>Výplň</translation>
     </message>
@@ -191,7 +163,7 @@
         <translation>Postupně zeslabit</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="745"/>
+        <location filename="../../colorfx/strokestyles.h" line="725"/>
         <source>Fade</source>
         <translation>Vyblednutí</translation>
     </message>
@@ -204,7 +176,7 @@
         <translation>Vír</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="398"/>
+        <location filename="../../colorfx/strokestyles.h" line="385"/>
         <source>Plait</source>
         <translation>Spleteno</translation>
     </message>
@@ -212,7 +184,7 @@
 <context>
     <name>TBubbleStrokeStyle</name>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="490"/>
+        <location filename="../../colorfx/strokestyles.h" line="475"/>
         <source>Bubbles</source>
         <translation>Fouknout</translation>
     </message>
@@ -220,7 +192,7 @@
 <context>
     <name>TChainStrokeStyle</name>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="134"/>
+        <location filename="../../colorfx/strokestyles.h" line="133"/>
         <source>Chain</source>
         <translation>Řetězec</translation>
     </message>
@@ -238,7 +210,7 @@
         <translation>Velikost tečky</translation>
     </message>
     <message>
-        <location filename="../../colorfx/regionstyles.h" line="516"/>
+        <location filename="../../colorfx/regionstyles.h" line="508"/>
         <source>Chalk</source>
         <translation>Křída</translation>
     </message>
@@ -271,7 +243,7 @@
         <translation>Šum</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="691"/>
+        <location filename="../../colorfx/strokestyles.h" line="672"/>
         <source>Chalk</source>
         <translation>Křída</translation>
     </message>
@@ -304,7 +276,7 @@
         <translation>Tloušťka</translation>
     </message>
     <message>
-        <location filename="../../colorfx/regionstyles.h" line="405"/>
+        <location filename="../../colorfx/regionstyles.h" line="399"/>
         <source>Square</source>
         <translation>Čtvercový</translation>
     </message>
@@ -327,7 +299,7 @@
         <translation>Úhel</translation>
     </message>
     <message>
-        <location filename="../../colorfx/regionstyles.h" line="569"/>
+        <location filename="../../colorfx/regionstyles.h" line="559"/>
         <source>Chessboard</source>
         <translation>Šachovnice</translation>
     </message>
@@ -355,7 +327,7 @@
         <translation>Tloušťka</translation>
     </message>
     <message>
-        <location filename="../../colorfx/regionstyles.h" line="780"/>
+        <location filename="../../colorfx/regionstyles.h" line="766"/>
         <source>Concentric</source>
         <translation>Soustředný</translation>
     </message>
@@ -373,7 +345,7 @@
         <translation>Neprůhlednost</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="352"/>
+        <location filename="../../colorfx/strokestyles.h" line="342"/>
         <source>Tulle</source>
         <translation>Tyl</translation>
     </message>
@@ -391,7 +363,7 @@
         <translation>Vzdálenost tečky</translation>
     </message>
     <message>
-        <location filename="../../colorfx/regionstyles.h" line="351"/>
+        <location filename="../../colorfx/regionstyles.h" line="346"/>
         <source>Polka Dots</source>
         <translation>Puntíkovaný</translation>
     </message>
@@ -419,7 +391,7 @@
         <translation>Mezera</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="260"/>
+        <location filename="../../colorfx/strokestyles.h" line="254"/>
         <source>Vanishing</source>
         <translation>Zředění</translation>
     </message>
@@ -432,7 +404,7 @@
         <translation>Vzdálenost</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="1119"/>
+        <location filename="../../colorfx/strokestyles.h" line="1090"/>
         <source>Striped</source>
         <translation>Pruhovaný</translation>
     </message>
@@ -450,7 +422,7 @@
         <translation>Tloušťka</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="1057"/>
+        <location filename="../../colorfx/strokestyles.h" line="1029"/>
         <source>Curl</source>
         <translation>Kudrna</translation>
     </message>
@@ -481,7 +453,7 @@
         <translation>Hustota</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="209"/>
+        <location filename="../../colorfx/strokestyles.h" line="206"/>
         <source>Dashes</source>
         <translation>Čárky</translation>
     </message>
@@ -509,7 +481,7 @@
         <translation>Hladkost</translation>
     </message>
     <message>
-        <location filename="../../colorfx/regionstyles.h" line="677"/>
+        <location filename="../../colorfx/regionstyles.h" line="665"/>
         <source>Linear Gradient</source>
         <translation>Lineární přechod</translation>
     </message>
@@ -522,7 +494,7 @@
         <translation>Vzdálenost</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="1184"/>
+        <location filename="../../colorfx/strokestyles.h" line="1152"/>
         <source>Watercolor</source>
         <translation>Vodová barva</translation>
     </message>
@@ -535,7 +507,7 @@
         <translation>Pruhy</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="1340"/>
+        <location filename="../../colorfx/strokestyles.h" line="1304"/>
         <source>Toothpaste</source>
         <translation>Zubní pasta</translation>
     </message>
@@ -563,7 +535,7 @@
         <translation>Největší tloušťka</translation>
     </message>
     <message>
-        <location filename="../../colorfx/regionstyles.h" line="839"/>
+        <location filename="../../colorfx/regionstyles.h" line="822"/>
         <source>Stained Glass</source>
         <translation>Vitrážové sklo</translation>
     </message>
@@ -591,7 +563,7 @@
         <translation>Šum</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="895"/>
+        <location filename="../../colorfx/strokestyles.h" line="872"/>
         <source>Gouache</source>
         <translation>Kvaš</translation>
     </message>
@@ -599,7 +571,7 @@
 <context>
     <name>TNoColorRasterStyle</name>
     <message>
-        <location filename="../../colorfx/rasterstyles.h" line="153"/>
+        <location filename="../../colorfx/rasterstyles.h" line="151"/>
         <source>Markup</source>
         <translation>Značení</translation>
     </message>
@@ -628,7 +600,7 @@
     </message>
     <message>
         <location filename="../../colorfx/strokestyles.cpp" line="2022"/>
-        <location filename="../../colorfx/strokestyles.h" line="647"/>
+        <location filename="../../colorfx/strokestyles.h" line="629"/>
         <source>Bump</source>
         <translation>Boule</translation>
     </message>
@@ -651,7 +623,7 @@
         <translation>Tloušťka</translation>
     </message>
     <message>
-        <location filename="../../colorfx/regionstyles.h" line="890"/>
+        <location filename="../../colorfx/regionstyles.h" line="872"/>
         <source>Beehive</source>
         <translation>Voštiny</translation>
     </message>
@@ -679,7 +651,7 @@
         <translation>Velikost tečky</translation>
     </message>
     <message>
-        <location filename="../../colorfx/regionstyles.h" line="287"/>
+        <location filename="../../colorfx/regionstyles.h" line="283"/>
         <source>Sponge Shading</source>
         <translation>Houbovité stínování</translation>
     </message>
@@ -707,7 +679,7 @@
         <translation>Hladkost</translation>
     </message>
     <message>
-        <location filename="../../colorfx/regionstyles.h" line="731"/>
+        <location filename="../../colorfx/regionstyles.h" line="718"/>
         <source>Radial Gradient</source>
         <translation>Paprskovitý přechod</translation>
     </message>
@@ -720,7 +692,7 @@
         <translation>Naklonění</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="308"/>
+        <location filename="../../colorfx/strokestyles.h" line="299"/>
         <source>Rope</source>
         <translation>Lano</translation>
     </message>
@@ -733,7 +705,7 @@
         <translation>Síla</translation>
     </message>
     <message>
-        <location filename="../../colorfx/regionstyles.h" line="233"/>
+        <location filename="../../colorfx/regionstyles.h" line="230"/>
         <source>Blob</source>
         <translation>Skvrna</translation>
     </message>
@@ -746,7 +718,7 @@
         <translation>Vzdálenost</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="849"/>
+        <location filename="../../colorfx/strokestyles.h" line="827"/>
         <source>Jagged</source>
         <translation>Zoubkovaný</translation>
     </message>
@@ -759,7 +731,7 @@
         <translation>Četnost</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="1017"/>
+        <location filename="../../colorfx/strokestyles.h" line="990"/>
         <source>Wave</source>
         <translation>Vlna</translation>
     </message>
@@ -772,7 +744,7 @@
         <translation>Hustota</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="447"/>
+        <location filename="../../colorfx/strokestyles.h" line="433"/>
         <source>Fuzz</source>
         <translation>Chmýří</translation>
     </message>
@@ -795,7 +767,7 @@
         <translation>Velikost</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="166"/>
+        <location filename="../../colorfx/strokestyles.h" line="164"/>
         <source>Circlets</source>
         <translation>Kroužky</translation>
     </message>
@@ -818,7 +790,7 @@
         <translation>Tloušťka</translation>
     </message>
     <message>
-        <location filename="../../colorfx/regionstyles.h" line="621"/>
+        <location filename="../../colorfx/regionstyles.h" line="610"/>
         <source>Banded</source>
         <translation>Pruhovaný</translation>
     </message>
@@ -836,7 +808,7 @@
         <translation>Velikost okraje</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="546"/>
+        <location filename="../../colorfx/strokestyles.h" line="530"/>
         <source>Gauze</source>
         <translation>Gáza</translation>
     </message>
@@ -854,7 +826,7 @@
         <translation>Stínování</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="796"/>
+        <location filename="../../colorfx/strokestyles.h" line="775"/>
         <source>Ribbon</source>
         <translation>Stuha</translation>
     </message>
@@ -895,7 +867,7 @@
         <translation>Tloušťka</translation>
     </message>
     <message>
-        <location filename="../../colorfx/strokestyles.h" line="968"/>
+        <location filename="../../colorfx/strokestyles.h" line="942"/>
         <source>Zigzag</source>
         <translation>Klikatá čára</translation>
     </message>

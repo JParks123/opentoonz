@@ -87,22 +87,6 @@
         <source>Table</source>
         <translation>动画台</translation>
     </message>
-    <message>
-        <source>Flip Object Horizontally</source>
-        <translation>横向翻转物体</translation>
-    </message>
-    <message>
-        <source>Flip Object Vertically</source>
-        <translation>纵向翻转物体</translation>
-    </message>
-    <message>
-        <source>Rotate Object Left</source>
-        <translation>向左旋转物体</translation>
-    </message>
-    <message>
-        <source>Rotate Object Right</source>
-        <translation>向右旋转物体</translation>
-    </message>
 </context>
 <context>
     <name>BrushTool</name>
@@ -419,7 +403,7 @@
     </message>
     <message>
         <source>A/R</source>
-        <translation>长宽比</translation>
+        <translation>A/R</translation>
     </message>
     <message>
         <source>Mass</source>
@@ -486,7 +470,7 @@
     </message>
     <message>
         <source>Normal</source>
-        <translation>常规</translation>
+        <translation>正常</translation>
     </message>
     <message>
         <source>Rectangular</source>
@@ -577,7 +561,7 @@
     </message>
     <message>
         <source>Normal</source>
-        <translation>常规</translation>
+        <translation>正常</translation>
     </message>
     <message>
         <source>Rectangular</source>
@@ -602,10 +586,6 @@
     <message>
         <source>Maximum Gap</source>
         <translation>最大间隙</translation>
-    </message>
-    <message>
-        <source>Pick+Freehand</source>
-        <translation>拾取+手绘</translation>
     </message>
 </context>
 <context>
@@ -694,7 +674,7 @@
     </message>
     <message>
         <source>Normal</source>
-        <translation>常规</translation>
+        <translation>正常</translation>
     </message>
     <message>
         <source>Rectangular</source>
@@ -772,7 +752,7 @@
     <name>PinchTool</name>
     <message>
         <source>Size:</source>
-        <translation>作用范围:</translation>
+        <translation>作用范围：</translation>
     </message>
     <message>
         <source>Corner:</source>
@@ -833,7 +813,7 @@
         <source>A group of skeletons already exists for current column. Replacing it will also substitute any existing vertex animation.
 
 Do you want to continue?</source>
-        <translation>当前列已经存在一组骨架。替换它也将替代任何现有的顶点动画。
+        <translation>当前列已经包含了一个骨架组。替换它会换掉全部现有的顶点动画。
 
 你要继续吗？</translation>
     </message>
@@ -893,9 +873,9 @@ Do you want to continue?</source>
         <source>The previous vertex name will be discarded, and all associated keys will be lost.
 
 Do you want to proceed?</source>
-        <translation>之前的顶点名称将被丢弃，所有相关的键也将丢失。
+        <translation>之前的顶点名称会被放弃，所有关联的关键帧也会丢失。
 
-你想继续吗？</translation>
+你要继续吗？</translation>
     </message>
     <message>
         <source>Edit Mesh</source>
@@ -1073,7 +1053,7 @@ Do you want to proceed?</source>
     </message>
     <message>
         <source>MultiArc</source>
-        <translation>多段弧</translation>
+        <translation>多段弧形</translation>
     </message>
     <message>
         <source>Smooth</source>
@@ -1175,7 +1155,7 @@ Do you want to proceed?</source>
     </message>
     <message>
         <source>The current frame is locked: any editing is forbidden.</source>
-        <translation>当前帧已经被锁定：禁止所有编辑。</translation>
+        <translation>当前帧已经被锁定: 禁止所有编辑。</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -1195,7 +1175,7 @@ Do you want to proceed?</source>
     </message>
     <message>
         <source>RGB Picker (R%1, G%2, B%3)</source>
-        <translation>RGB 拾色器(R%1, G%2, B%3)</translation>
+        <translation>RGB 拾色器 (R%1, G%2, B%3)</translation>
     </message>
     <message>
         <source>Group</source>
@@ -1235,7 +1215,7 @@ Do you want to proceed?</source>
     </message>
     <message>
         <source>Set Save Box : (X%1,Y%2,W%3,H%4)-&gt;(X%5,Y%6,W%7,H%8)</source>
-        <translation>设置保存框：(X%1,Y%2,W%3,H%4)-&gt;(X%5,Y%6,W%7,H%8)</translation>
+        <translation>设置保存框 : (X%1,Y%2,W%3,H%4)-&gt;(X%5,Y%6,W%7,H%8)</translation>
     </message>
     <message>
         <source>The current column is hidden.</source>
@@ -1263,31 +1243,31 @@ Do you want to proceed?</source>
     </message>
     <message>
         <source>The selection cannot be updated. It is not editable.</source>
-        <translation>选择不能被更新。它是不可编辑的。</translation>
+        <translation>所选择的不能被更新。它不是可编辑的。</translation>
     </message>
     <message>
         <source>The selection cannot be deleted. It is not editable.</source>
-        <translation>选择不能被删除。它是不可编辑的。</translation>
+        <translation>所选择的不能被删除。它不是可编辑的。</translation>
     </message>
     <message>
         <source>The selection cannot be pasted. It is not editable.</source>
-        <translation>选择不能被粘贴。它是不可编辑的。</translation>
+        <translation>所选择的不能被粘贴。它不是可编辑的。</translation>
     </message>
     <message>
         <source>The selection cannot be grouped. It is not editable.</source>
-        <translation>选择不能被成组。它是不可编辑的。</translation>
+        <translation>所选择的不能被成组。它不是可编辑的。</translation>
     </message>
     <message>
         <source>The selection cannot be entered. It is not editable.</source>
-        <translation>选择不能被进入。它是不可编辑的。</translation>
+        <translation>所选择的不能被进入。它不是可编辑的。</translation>
     </message>
     <message>
         <source>The selection cannot be ungrouped. It is not editable.</source>
-        <translation>选择不能被解组。它是不可编辑的。</translation>
+        <translation>所选择的不能被取消群组。它不是可编辑的。</translation>
     </message>
     <message>
         <source>The selection cannot be moved. It is not editable.</source>
-        <translation>选择不能被移动。它是不可编辑的。</translation>
+        <translation>所选择的不能被移动。它不是可编辑的。</translation>
     </message>
     <message>
         <source>Snap At Intersection</source>
@@ -1306,7 +1286,7 @@ Do you want to proceed?</source>
     </message>
     <message>
         <source>Normal</source>
-        <translation>常规</translation>
+        <translation>正常</translation>
     </message>
     <message>
         <source>Rectangular</source>
@@ -1367,7 +1347,7 @@ Do you want to proceed?</source>
     </message>
     <message>
         <source>Normal</source>
-        <translation>常规</translation>
+        <translation>正常</translation>
     </message>
     <message>
         <source>Rectangular</source>
@@ -1489,22 +1469,6 @@ Do you want to proceed?</source>
     <message>
         <source>Position</source>
         <translation>位置</translation>
-    </message>
-    <message>
-        <source>Flip Selection Horizontally</source>
-        <translation>水平翻转选择</translation>
-    </message>
-    <message>
-        <source>Flip Selection Vertically</source>
-        <translation>垂直翻转选择</translation>
-    </message>
-    <message>
-        <source>Rotate Selection Left</source>
-        <translation>向左旋转选择</translation>
-    </message>
-    <message>
-        <source>Rotate Selection Right</source>
-        <translation>向右旋转选择</translation>
     </message>
 </context>
 <context>
@@ -1774,11 +1738,11 @@ moved to the end of the first page of the palette.</source>
     </message>
     <message>
         <source>X:</source>
-        <translation>左右:</translation>
+        <translation>X:</translation>
     </message>
     <message>
         <source>Y:</source>
-        <translation>上下:</translation>
+        <translation>Y:</translation>
     </message>
 </context>
 <context>
@@ -1923,7 +1887,7 @@ moved to the end of the first page of the palette.</source>
     </message>
     <message>
         <source>Normal</source>
-        <translation>常规</translation>
+        <translation>正常</translation>
     </message>
     <message>
         <source>Rectangular</source>

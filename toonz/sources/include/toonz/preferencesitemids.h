@@ -121,8 +121,6 @@ enum PreferencesItemId {
   xsheetStep,
   xsheetAutopanEnabled,
   DragCellsBehaviour,
-  deleteCommandBehavior,
-  pasteCellsBehavior,
   ignoreAlphaonColumn1Enabled,
   showKeyframesOnXsheetCellArea,
   showXsheetCameraColumn,
@@ -130,10 +128,8 @@ enum PreferencesItemId {
   inputCellsWithoutDoubleClickingEnabled,
   shortcutCommandsWhileRenamingCellEnabled,
   showXSheetToolbar,
-  showXsheetBreadcrumbs,
   expandFunctionHeader,
   showColumnNumbers,
-  unifyColumnVisibilityToggles,
   parentColorsInXsheetColumn,
   highlightLineEverySecond,
   syncLevelRenumberWithXsheet,
@@ -141,7 +137,6 @@ enum PreferencesItemId {
   currentColumnColor,
   levelNameDisplayType,
   showFrameNumberWithLetters,
-  linkColumnNameWithLevel,
 
   //----------
   // Animation

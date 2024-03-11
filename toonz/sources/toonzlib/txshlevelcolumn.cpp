@@ -85,7 +85,7 @@ TXshColumn *TXshLevelColumn::clone() const {
   column->m_cells = m_cells;
   column->m_first = m_first;
   column->setColorTag(getColorTag());
-  column->setColorFilterId(getColorFilterId());
+  column->setFilterColorId(getFilterColorId());
 
   // column->updateIcon();
   return column;
@@ -111,7 +111,7 @@ void TXshLevelColumn::loadData(TIStream &is) {
     } else if (tagName == "filter_color_id") {
       int id;
       is >> id;
-      setColorFilterId(id);
+      setFilterColorId((TXshColumn::FilterColor)id);
     } else if (tagName == "cells") {
       while (is.openChild(tagName)) {
         if (tagName == "cell") {
@@ -164,8 +164,8 @@ void TXshLevelColumn::loadData(TIStream &is) {
 void TXshLevelColumn::saveData(TOStream &os) {
   os.child("status") << getStatusWord();
   if (getOpacity() < 255) os.child("camerastand_opacity") << (int)getOpacity();
-  if (getColorFilterId() != 0)
-    os.child("filter_color_id") << (int)getColorFilterId();
+  if (getFilterColorId() != 0)
+    os.child("filter_color_id") << (int)getFilterColorId();
   int r0, r1;
   if (getRange(r0, r1)) {
     os.openChild("cells");
@@ -209,12 +209,9 @@ void TXshLevelColumn::saveData(TOStream &os) {
 
 //-----------------------------------------------------------------------------
 // Used in TCellData::getNumbers
-// reservedLevel can be nonzero if the preferences option
-// "LinkColumnNameWithLevel" is ON and the column name is the same as some level
-// in the scene cast.
-bool TXshLevelColumn::setNumbers(int row, int rowCount, const TXshCell cells[],
-                                 TXshLevel *reservedLevel) {
-  if (m_cells.empty() && !reservedLevel) return false;
+bool TXshLevelColumn::setNumbers(int row, int rowCount,
+                                 const TXshCell cells[]) {
+  if (m_cells.empty()) return false;
   // Check availability.
   // - if source cells are all empty, do nothing
   // - also, if source or target cells contain NO_FRAME, do nothing
@@ -239,18 +236,16 @@ bool TXshLevelColumn::setNumbers(int row, int rowCount, const TXshCell cells[],
   // Find a level to input.
   // If the first target cell is empty, search the upper cells, and lower cells
   // and use a level of firsty-found occupied neighbor cell.
-  TXshLevelP currentLevel = reservedLevel;
-  int tmpIndex            = std::min(row - m_first, (int)m_cells.size() - 1);
+  TXshLevelP currentLevel;
+  int tmpIndex = std::min(row - m_first, (int)m_cells.size() - 1);
   // search upper cells
-  if (!currentLevel) {
-    while (tmpIndex >= 0) {
-      TXshCell tmpCell = m_cells[tmpIndex];
-      if (!tmpCell.isEmpty() && tmpCell.m_frameId != TFrameId::NO_FRAME) {
-        currentLevel = tmpCell.m_level;
-        break;
-      }
-      tmpIndex--;
+  while (tmpIndex >= 0) {
+    TXshCell tmpCell = m_cells[tmpIndex];
+    if (!tmpCell.isEmpty() && tmpCell.m_frameId != TFrameId::NO_FRAME) {
+      currentLevel = tmpCell.m_level;
+      break;
     }
+    tmpIndex--;
   }
   // if not found any level in upper cells, then search the lower cells
   if (!currentLevel) {

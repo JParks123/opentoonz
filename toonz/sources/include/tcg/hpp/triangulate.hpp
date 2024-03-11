@@ -14,7 +14,7 @@
 #include <GL/glu.h>
 #elif defined(MACOSX)
 #include <GLUT/glut.h>
-#elif defined(LINUX) || defined(FREEBSD) || defined(HAIKU)
+#elif defined(LINUX) || defined(FREEBSD)
 #include <GL/glut.h>
 #include <cstring>
 #endif

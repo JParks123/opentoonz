@@ -19,8 +19,6 @@
 class QMenu;
 class QWidget;
 
-#include <QMap>
-
 //=============================================================================
 // TSelection
 //-----------------------------------------------------------------------------
@@ -76,17 +74,8 @@ public:
 
   void notifyView();
 
-  // specify alternative command name when the selection is current.
-  // the commands must be "Edit" category.
-  const QMap<CommandId, QString> &alternativeCommandNames() {
-    return m_alternativeCommandNames;
-  }
-
 private:
   View *m_view;
-
-protected:
-  QMap<CommandId, QString> m_alternativeCommandNames;
 };
 
 #endif  // TSELECTION_H
