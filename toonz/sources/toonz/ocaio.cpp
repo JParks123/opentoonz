@@ -331,20 +331,9 @@ void OCAData::build(ToonzScene *scene, TXsheet *xsheet, QString name,
   m_raEXR = useEXR;
   m_veSVG = vectorAsSVG;
 
-  // if the current xsheet is top xsheet in the scene and the output
-  // frame range is specified, set the "to" frame value as duration
   TOutputProperties *oprop = scene->getProperties()->getOutputProperties();
-  int from, to, step;
-  if (scene->getTopXsheet() == xsheet && oprop->getRange(from, to, step)) {
-    m_startTime = from;
-    m_endTime   = to;
-    // m_stepTime  = step;
-  } else {
-    m_startTime = 0;
-    m_endTime   = xsheet->getFrameCount() - 1;
-    // m_stepTime  = 1;
-  }
-  if (m_endTime < 0) m_endTime = 0;
+  m_startTime = 0;
+  m_endTime   = xsheet->getFrameCount() - 1;
 
   // Build a list of rows
   QList<int> rows;
