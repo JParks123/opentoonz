@@ -40,6 +40,8 @@
 #include "toonz/columnfan.h"
 #include "toonz/tstageobjectcmd.h"
 #include "toonz/fxcommand.h"
+#include "toonz/txshlevel.h"
+#include "toonz/txshsimplelevel.h"
 #include "toonz/txshleveltypes.h"
 #include "toonz/levelproperties.h"
 #include "toonz/preferences.h"
@@ -53,6 +55,7 @@
 
 // TnzCore includes
 #include "tconvert.h"
+#include "timage.h"
 
 #include <QApplication>
 #include <QMainWindow>
@@ -81,7 +84,7 @@ const QSet<TXshLevel *> getLevels(TXshColumn *column) {
     cellColumn->getRange(r0, r1);
     for (i = r0; i <= r1; i++) {
       TXshCell cell = cellColumn->getCell(i);
-      // TXshSimpleLevel *sl = cell.getSimpleLevel();
+      // TXshSimpleLevel *sl = cell.fillRect();
       if (!cell.isEmpty()) levels.insert(cell.m_level.getPointer());
     }
   }
@@ -750,8 +753,13 @@ const bool ColumnArea::isControlPressed() { return isCtrlPressed; }
 
 //-----------------------------------------------------------------------------
 
+//-----------------------------------------------------------------------------
+// DrawHeader Constructor
+//-----------------------------------------------------------------------------
+
 ColumnArea::DrawHeader::DrawHeader(ColumnArea *nArea, QPainter &nP, int nCol)
     : area(nArea), p(nP), col(nCol), reservedLevel(nullptr) {
+
   m_viewer = area->m_viewer;
   o        = m_viewer->orientation();
   app      = TApp::instance();
@@ -759,24 +767,28 @@ ColumnArea::DrawHeader::DrawHeader(ColumnArea *nArea, QPainter &nP, int nCol)
   column   = xsh->getColumn(col);
   isEmpty  = col >= 0 ? xsh->isColumnEmpty(col) : false;
 
-  if (isEmpty && Preferences::instance()->isLinkColumnNameWithLevelEnabled() &&
+  if (isEmpty &&
+      Preferences::instance()->isLinkColumnNameWithLevelEnabled() &&
       m_viewer->getXsheet()
           ->getStageObject(TStageObjectId::ColumnId(col))
           ->hasSpecifiedName()) {
-    std::string columnName = m_viewer->getXsheet()
-                                 ->getStageObject(TStageObjectId::ColumnId(col))
-                                 ->getName();
+
+    std::string columnName =
+        m_viewer->getXsheet()
+            ->getStageObject(TStageObjectId::ColumnId(col))
+            ->getName();
+
     ToonzScene *scene   = TApp::instance()->getCurrentScene()->getScene();
     TLevelSet *levelSet = scene->getLevelSet();
     reservedLevel       = levelSet->getLevel(to_wstring(columnName));
   }
 
-  TStageObjectId currentColumnId = app->getCurrentObject()->getObjectId();
+  TStageObjectId currentColumnId =
+      app->getCurrentObject()->getObjectId();
 
-  // check if the column is current
   isCurrent = false;
   if (currentColumnId ==
-      TStageObjectId::CameraId(xsh->getCameraColumnIndex()))  // CAMERA
+      TStageObjectId::CameraId(xsh->getCameraColumnIndex()))
     isCurrent = col == -1;
   else
     isCurrent = m_viewer->getCurrentColumn() == col;
@@ -784,9 +796,14 @@ ColumnArea::DrawHeader::DrawHeader(ColumnArea *nArea, QPainter &nP, int nCol)
   orig = m_viewer->positionToXY(CellPosition(0, std::max(col, -1)));
 }
 
+//-----------------------------------------------------------------------------
+// prepare()
+//-----------------------------------------------------------------------------
+
 void ColumnArea::DrawHeader::prepare() const {
-  // Preparing painter
+
   QString fontName = Preferences::instance()->getInterfaceFont();
+
   if (fontName == "") {
 #ifdef _WIN32
     fontName = "Arial";
@@ -794,6 +811,7 @@ void ColumnArea::DrawHeader::prepare() const {
     fontName = "Helvetica";
 #endif
   }
+
   static QFont font(fontName, -1, QFont::Normal);
   font.setPixelSize(XSHEET_FONT_PX_SIZE);
 
@@ -802,11 +820,16 @@ void ColumnArea::DrawHeader::prepare() const {
 }
 
 //-----------------------------------------------------------------------------
+// Pixmaps
+//-----------------------------------------------------------------------------
+
 const QPixmap &ColumnArea::Pixmaps::sound() {
-  static QPixmap sound = createQIcon("sound_header")
-                             .pixmap(QSize(40, 30), QIcon::Normal, QIcon::Off);
+  static QPixmap sound =
+      createQIcon("sound_header")
+          .pixmap(QSize(40, 30), QIcon::Normal, QIcon::Off);
   return sound;
 }
+
 const QPixmap &ColumnArea::Pixmaps::soundPlaying() {
   static QPixmap soundPlaying =
       createQIcon("sound_header")
@@ -815,44 +838,102 @@ const QPixmap &ColumnArea::Pixmaps::soundPlaying() {
 }
 
 //-----------------------------------------------------------------------------
+// levelColors()
+//-----------------------------------------------------------------------------
 
 void ColumnArea::DrawHeader::levelColors(QColor &columnColor,
                                          QColor &dragColor) const {
+
   if (col < 0) {
     TStageObjectId cameraId =
-        m_viewer->getXsheet()->getStageObjectTree()->getCurrentCameraId();
+        m_viewer->getXsheet()->getStageObjectTree()
+            ->getCurrentCameraId();
+
     bool isActive =
-        cameraId.getIndex() == m_viewer->getXsheet()->getCameraColumnIndex();
-    columnColor = isActive ? m_viewer->getActiveCameraColor()
-                           : m_viewer->getOtherCameraColor();
-    dragColor   = isActive ? m_viewer->getActiveCameraColor()
-                           : m_viewer->getOtherCameraColor();
+        cameraId.getIndex() ==
+        m_viewer->getXsheet()->getCameraColumnIndex();
+
+    columnColor = isActive
+                      ? m_viewer->getActiveCameraColor()
+                      : m_viewer->getOtherCameraColor();
+
+    dragColor = columnColor;
     return;
   }
+
   enum { Normal, Reference, Control } usage = Reference;
+
   if (column) {
     if (column->isControl()) usage = Control;
-    if (column->isRendered() || column->getMeshColumn()) usage = Normal;
+    if (column->isRendered() || column->getMeshColumn())
+      usage = Normal;
   }
 
   if (reservedLevel) {
     int ltype;
-    m_viewer->getCellTypeAndColors(ltype, columnColor, dragColor,
-                                   TXshCell(reservedLevel, TFrameId()));
-  } else if (usage == Reference) {
+    m_viewer->getCellTypeAndColors(
+        ltype, columnColor, dragColor,
+        TXshCell(reservedLevel, TFrameId()));
+  }
+  else if (usage == Reference) {
     columnColor = m_viewer->getReferenceColumnColor();
     dragColor   = m_viewer->getReferenceColumnBorderColor();
-  } else
-    m_viewer->getColumnColor(columnColor, dragColor, col, xsh);
+  }
+  else {
+    m_viewer->getColumnColor(
+        columnColor, dragColor, col, xsh);
+  }
+
+  // ---------------------------------------------------------
+  // Burnt Umber override for META (Assistant) columns
+  // ---------------------------------------------------------
+
+  TXshLevelColumn *levelColumn =
+      column ? column->getLevelColumn() : nullptr;
+
+  if (levelColumn) {
+
+    int rowCount = xsh->getFrameCount();
+
+    for (int r = 0; r < rowCount; ++r) {
+
+      TXshCell cell = levelColumn->getCell(r);
+
+      if (!cell.isEmpty()) {
+
+        TXshSimpleLevel *sl = cell.getSimpleLevel();
+
+        if (sl && sl->getType() == META_XSHLEVEL) {
+
+          columnColor = QColor(138, 51, 36);   // Burnt umber
+          dragColor   = columnColor.darker(120);
+        }
+
+        break;
+      }
+    }
+  }
 }
+
+//-----------------------------------------------------------------------------
+// soundColors()
+//-----------------------------------------------------------------------------
+
 void ColumnArea::DrawHeader::soundColors(QColor &columnColor,
                                          QColor &dragColor) const {
   m_viewer->getColumnColor(columnColor, dragColor, col, xsh);
 }
+
+//-----------------------------------------------------------------------------
+// paletteColors()
+//-----------------------------------------------------------------------------
+
 void ColumnArea::DrawHeader::paletteColors(QColor &columnColor,
                                            QColor &dragColor) const {
+
   enum { Normal, Reference, Control } usage = Reference;
-  if (column) {  // Check if column is a mask
+
+  if (column) {
     if (column->isControl()) usage = Control;
     if (column->isRendered()) usage = Normal;
   }
@@ -860,110 +941,14 @@ void ColumnArea::DrawHeader::paletteColors(QColor &columnColor,
   if (usage == Reference) {
     columnColor = m_viewer->getReferenceColumnColor();
     dragColor   = m_viewer->getReferenceColumnBorderColor();
-  } else {
+  }
+  else {
     columnColor = m_viewer->getPaletteColumnColor();
     dragColor   = m_viewer->getPaletteColumnBorderColor();
   }
 }
 
-void ColumnArea::DrawHeader::drawBaseFill(const QColor &columnColor,
-                                          const QColor &dragColor) const {
-  // check if the column is reference
-  bool isEditingSpline = app->getCurrentObject()->isSpline();
-
-  QRect rect = o->rect((col < 0) ? PredefinedRect::CAMERA_LAYER_HEADER
-                                 : PredefinedRect::LAYER_HEADER)
-                   .translated(orig);
-
-  int x0 = rect.left();
-  int x1 = rect.right();
-  int y0 = rect.top();
-  int y1 = rect.bottom();
-
-  // Fill base color, in timeline view adjust it right upto thumbnail so column
-  // head color doesn't show under icon switches.
-  if (isEmpty && !reservedLevel)
-    p.fillRect(o->isVerticalTimeline() ? rect : rect.adjusted(80, 0, 0, 0),
-               m_viewer->getEmptyColumnHeadColor());
-  else if (col < 0)
-    p.fillRect(o->isVerticalTimeline() ? rect : rect.adjusted(80, 0, 0, 0),
-               columnColor);
-  else {
-    QBrush brush(columnColor,
-                 (reservedLevel) ? Qt::DiagCrossPattern : Qt::SolidPattern);
-    p.fillRect(o->isVerticalTimeline() ? rect : rect.adjusted(80, 0, 0, 0),
-               brush);
-
-    if (o->flag(PredefinedFlag::DRAG_LAYER_VISIBLE)) {
-      // column handle
-      QRect sideBar = o->rect(PredefinedRect::DRAG_LAYER).translated(x0, y0);
-
-      if (o->flag(PredefinedFlag::DRAG_LAYER_BORDER)) {
-        p.setPen(m_viewer->getVerticalLineColor());
-        p.drawRect(sideBar);
-      }
-
-      p.fillRect(sideBar, sideBar.contains(area->m_pos)
-                              ? m_viewer->getXsheetDragBarHighlightColor()
-                              : dragColor);
-    }
-  }
-
-  p.setPen(m_viewer->getVerticalLineHeadColor());
-  QLine vertical =
-      o->verticalLine(m_viewer->columnToLayerAxis(col), o->frameSide(rect));
-  if (isEmpty || o->isVerticalTimeline()) p.drawLine(vertical);
-
-  // highlight selection
-  bool isSelected =
-      m_viewer->getColumnSelection()->isColumnSelected(col) && !isEditingSpline;
-  bool isCameraSelected = col == -1 && isCurrent && !isEditingSpline;
-
-  QColor pastelizer(m_viewer->getColumnHeadPastelizer());
-
-  QColor colorSelection(m_viewer->getSelectedColumnHead());
-  p.fillRect(o->isVerticalTimeline() ? rect : rect.adjusted(80, 0, 0, 0),
-             isSelected ? colorSelection : pastelizer);
-}
-
-void ColumnArea::DrawHeader::drawEye() const {
-  if (isEmpty || !o->flag(PredefinedFlag::EYE_AREA_VISIBLE)) return;
-  if (col < 0 && o->isVerticalTimeline())
-    return;  // no preview eye in the camera column
-  QColor bgColor;
-  QString svgFilePath;
-  int buttonType = !column->isPreviewVisible() ? PREVIEW_OFF_XSHBUTTON
-                                               : PREVIEW_ON_XSHBUTTON;
-  m_viewer->getButton(buttonType, bgColor, svgFilePath,
-                      !o->isVerticalTimeline());
-
-  QRect prevViewRect = o->rect(PredefinedRect::EYE_AREA).translated(orig);
-  QRect eyeRect      = o->rect(PredefinedRect::EYE).translated(orig);
-  // preview visible toggle
-  if (o->isVerticalTimeline())
-    p.setPen(m_viewer->getColumnIconLineColor());  // Preview border color
-  else
-    p.setPen(m_viewer->getTimelineIconLineColor());  // Preview border color
-
-  if (col < 0 || column->getSoundTextColumn()) {
-    if (o->flag(PredefinedFlag::EYE_AREA_BORDER)) p.drawRect(prevViewRect);
-    return;
-  }
-
-  p.fillRect(prevViewRect, bgColor);  //   PreviewVisibleColor);
-  if (o->flag(PredefinedFlag::EYE_AREA_BORDER)) p.drawRect(prevViewRect);
-
-  // For Legacy (layout=1), Preview Off button is not displayed in Xsheet mode
-  if (o->isVerticalTimeline() &&
-      m_viewer->getXsheetLayout() == QString("Classic") &&
-      buttonType == PREVIEW_OFF_XSHBUTTON)
-    return;
-
-  QPixmap icon =
-      svgToPixmap(svgFilePath, eyeRect.size(), Qt::KeepAspectRatio, bgColor);
-
-  p.drawPixmap(eyeRect, icon);
-}
+//-----------------------------------------------------------------------------
 
 void ColumnArea::DrawHeader::drawPreviewToggle(int opacity) const {
   if (isEmpty || !o->flag(PredefinedFlag::PREVIEW_LAYER_AREA_VISIBLE)) return;
@@ -1241,14 +1226,10 @@ void ColumnArea::DrawHeader::drawThumbnail(QPixmap &iconPixmap) const {
   if (isEmpty) return;
 
   QRect thumbnailRect = o->rect((col < 0) ? PredefinedRect::CAMERA_ICON_AREA
-                                          : PredefinedRect::THUMBNAIL_AREA)
-                            .translated(orig);
+                                        : PredefinedRect::THUMBNAIL_AREA)
+                          .translated(orig);
 
-  // Minimum layout has no thumbnail area
   if (thumbnailRect.isEmpty()) return;
-
-  p.setPen(m_viewer->getVerticalLineColor());
-  if (o->flag(PredefinedFlag::THUMBNAIL_AREA_BORDER)) p.drawRect(thumbnailRect);
 
   // sound thumbnail
   if (column->getSoundColumn()) {
@@ -1270,6 +1251,10 @@ void ColumnArea::DrawHeader::drawThumbnail(QPixmap &iconPixmap) const {
                                                : PredefinedRect::THUMBNAIL)
                                  .translated(orig);
 
+  // Replace grey thumbnail background with white
+  if (col >= 0)
+    p.fillRect(thumbnailImageRect, Qt::white);                               
+
   // palette thumbnail
   if (column->getPaletteColumn()) {
     p.drawPixmap(thumbnailImageRect, iconPixmap);
@@ -1289,26 +1274,55 @@ void ColumnArea::DrawHeader::drawThumbnail(QPixmap &iconPixmap) const {
   TXshMeshColumn *meshColumn   = column->getMeshColumn();
   TXshZeraryFxColumn *zColumn  = dynamic_cast<TXshZeraryFxColumn *>(column);
 
-  if (Preferences::instance()->getColumnIconLoadingPolicy() ==
+   if (Preferences::instance()->getColumnIconLoadingPolicy() ==
           Preferences::LoadOnDemand &&
       ((levelColumn && !levelColumn->isIconVisible()) ||
        (meshColumn && !meshColumn->isIconVisible()) ||
        (zColumn && !zColumn->isIconVisible())) &&
       col >= 0) {
+
     // display nothing
-  } else {
+
+    } else {
+
     if (!iconPixmap.isNull()) {
-      p.drawPixmap(thumbnailImageRect, iconPixmap);
+        p.drawPixmap(thumbnailImageRect, iconPixmap);
     }
+
+    // Assistant badge ONLY for META (Guide) columns
+    if (levelColumn) {
+
+        TXshCell cell = levelColumn->getCell(m_viewer->getCurrentRow());
+        TXshSimpleLevel *sl = cell.getSimpleLevel();
+
+        if (sl && sl->getType() == META_XSHLEVEL) {
+
+            static QPixmap assistantIcon(
+                ":/icons/dark/tools/20x20/assistant_column.svg");
+
+            if (!assistantIcon.isNull()) {
+
+                QRect badgeRect(
+                    thumbnailImageRect.left() + 4,
+                    thumbnailImageRect.top() + 4,
+                    16,
+                    16);
+
+                p.drawPixmap(badgeRect, assistantIcon);
+            }
+        }
+    }
+
     // notify that the column icon is already shown
     if (levelColumn)
-      levelColumn->setIconVisible(true);
+        levelColumn->setIconVisible(true);
     else if (meshColumn)
-      meshColumn->setIconVisible(true);
+        meshColumn->setIconVisible(true);
     else if (zColumn)
-      zColumn->setIconVisible(true);
+        zColumn->setIconVisible(true);
   }
-}
+
+} 
 
 void ColumnArea::DrawHeader::drawPegbarName() const {
   if (isEmpty || !o->flag(PredefinedFlag::PEGBAR_NAME_VISIBLE)) return;
